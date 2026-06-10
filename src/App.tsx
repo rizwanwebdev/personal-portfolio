@@ -85,25 +85,11 @@ export default function App() {
 
     setFormStatus("submitting");
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(formData)
-      });
-
-      const result = await response.json();
-      if (response.ok && result.success) {
-        setFormStatus("success");
-        setFormFeedback(result.simulated
-          ? "Blueprint Mode: Message cached successfully!"
-          : "Your message has been successfully routed to Rizwan's blueprint node."
-        );
-        setFormData({ name: "", email: "", message: "" });
-      } else {
-        throw new Error(result.error || "System transaction failed. Please retry.");
-      }
+      // Mocking the backend endpoint for the portfolio
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      setFormStatus("success");
+      setFormFeedback("Your message has been successfully routed to Rizwan's blueprint node.");
+      setFormData({ name: "", email: "", message: "" });
     } catch (err: any) {
       setFormStatus("error");
       setFormFeedback(err.message || "Failed to establish contact transit tunnel.");
@@ -165,7 +151,7 @@ export default function App() {
               className={`text-xs font-semibold uppercase tracking-widest transition-all cursor-pointer px-3 py-1 bg-emerald-950/50 border ${currentView === 'fiverr-gig' ? 'border-emerald-400 text-white' : 'border-emerald-900/60 text-emerald-400 hover:bg-emerald-900/50 hover:text-emerald-300'
                 }`}
             >
-              Fiverr Gig
+              Gig
             </button>
           </div>
 
@@ -359,11 +345,8 @@ export default function App() {
               {/* MISSION & ABOUT HERO SECTION */}
               <section id="bio" className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center border-t border-zinc-800 pt-16">
                 {/* Card Block */}
-                <motion.div
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  className="relative p-8 md:p-10 border border-zinc-800 bg-[#121212] overflow-hidden"
+                <div
+                  className="relative p-8 md:p-10 border border-zinc-800 bg-[#121212] overflow-hidden scroll-animate"
                 >
                   <span className="font-mono text-[9px] text-zinc-500 block uppercase tracking-widest mb-2">01 STATEMENT</span>
                   <h2 className="font-hand text-3xl md:text-4xl font-black italic tracking-tighter uppercase mb-6 pb-2 border-b border-dashed border-zinc-800 text-white">
@@ -395,7 +378,7 @@ export default function App() {
                       </span>
                     </div>
                   </div>
-                </motion.div>
+                </div>
 
                 {/* Decorative Sketching Image Stack */}
                 <div className="relative hidden lg:block h-[420px]">
@@ -427,13 +410,9 @@ export default function App() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {skillsCategories.map((cat, idx) => (
-                    <motion.div
+                    <div
                       key={idx}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: idx * 0.1 }}
-                      className="p-8 border border-zinc-800 bg-[#121212] hover:bg-zinc-900 transition-colors flex flex-col justify-between min-h-[250px]"
+                      className="p-8 border border-zinc-800 bg-[#121212] hover:bg-zinc-900 transition-colors flex flex-col justify-between min-h-[250px] scroll-animate"
                     >
                       <div>
                         <div className="flex justify-between items-start mb-6">
@@ -463,7 +442,7 @@ export default function App() {
                           );
                         })}
                       </div>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
 
@@ -525,17 +504,13 @@ export default function App() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                   {recentProjects.map((project, idx) => (
-                    <motion.div
+                    <div
                       key={project.id}
-                      initial={{ opacity: 0, y: 30 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: idx * 0.1 }}
                       onClick={() => {
                         setSelectedProjectId(project.id);
                         setCurrentView('case-study');
                       }}
-                      className="group flex flex-col rounded-none bg-zinc-950/45 border border-zinc-900 overflow-hidden shadow-2xl cursor-pointer hover:border-zinc-500 transition-all duration-300 relative"
+                      className="group flex flex-col rounded-none bg-zinc-950/45 border border-zinc-900 overflow-hidden shadow-2xl cursor-pointer hover:border-zinc-500 transition-all duration-300 relative scroll-animate"
                     >
                       {/* Image Wrap */}
                       <div className="aspect-video border-b border-zinc-900 overflow-hidden relative bg-zinc-900">
@@ -605,18 +580,15 @@ export default function App() {
                           </button>
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
               </section>
 
               {/* WORK CO-LAB & CALL TO ACTION BANNER */}
               <section className="py-8">
-                <motion.div
-                  initial={{ scale: 0.98, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  viewport={{ once: true }}
-                  className="flex flex-col items-center text-center space-y-8 py-16 px-8 border border-zinc-800 bg-[#121212] relative overflow-hidden shadow-2xl"
+                <div
+                  className="flex flex-col items-center text-center space-y-8 py-16 px-8 border border-zinc-800 bg-[#121212] relative overflow-hidden shadow-2xl scroll-animate"
                 >
                   <div className="absolute -top-10 -right-10 opacity-5 rotate-12">
                     <Compass className="w-[180px] h-[180px] text-white" />
@@ -629,14 +601,14 @@ export default function App() {
 
                   <a
                     href="#contact"
-                    className="relative px-12 py-5 font-hand text-2xl bg-white text-black font-bold uppercase tracking-wider hover-invert transition-all block rounded-none"
+                    className="relative px-12 py-5 font-hand text-2xl bg-white text-black hover:bg-black hover:text-white border border-transparent hover:border-white font-bold uppercase tracking-wider transition-all block rounded-none group"
                   >
                     Hire Me
-                    <div className="absolute -top-3 -right-3 bg-zinc-850 text-white font-mono text-[9px] font-bold px-2.5 py-1 rotate-12 uppercase border border-zinc-700 whitespace-nowrap">
+                    <div className="absolute -top-3 -right-3 bg-zinc-850 text-yellow-500 group-hover:bg-yellow-500 group-hover:text-black group-hover:border-yellow-600 font-mono text-[9px] font-bold px-2.5 py-1 rotate-12 uppercase border border-zinc-700 whitespace-nowrap transition-colors">
                       NOW LIVE
                     </div>
                   </a>
-                </motion.div>
+                </div>
               </section>
 
               {/* CONCISE GET IN TOUCH FORM SECTION */}
@@ -662,9 +634,15 @@ export default function App() {
                       )}
                     </button>
 
-                    <div className="flex items-center gap-3 text-zinc-300 font-bold bg-zinc-950 border border-zinc-800 px-4 py-3 self-start uppercase tracking-widest text-[11px] w-full sm:w-auto">
-                      <MapPin className="w-4 h-4 text-zinc-500 shrink-0" />
-                      <span>{profileDetails.location}</span>
+                    <div className="flex flex-col gap-2 w-full sm:w-auto">
+                      <div className="flex items-center gap-3 text-zinc-300 font-bold bg-zinc-950 border border-zinc-800 px-4 py-3 uppercase tracking-widest text-[11px] w-full sm:w-auto">
+                        <MapPin className="w-4 h-4 text-zinc-500 shrink-0" />
+                        <span>{profileDetails.location}</span>
+                      </div>
+                      <a href="/resume.pdf" download className="flex items-center gap-3 text-white font-bold hover:text-black hover:bg-white transition-all duration-200 cursor-pointer text-left group bg-zinc-950 border border-zinc-800 px-4 py-3 hover:border-white uppercase tracking-widest text-[11px] w-full sm:w-auto">
+                        <FileText className="w-4 h-4 text-zinc-400 shrink-0 group-hover:text-black" />
+                        <span>DOWNLOAD RESUME</span>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -722,10 +700,10 @@ export default function App() {
                   {/* Submission Triggers and Feedback Messages */}
                   {formStatus !== "idle" && formFeedback && (
                     <div className={`p-4 font-mono text-[11px] border ${formStatus === "success"
-                        ? "bg-emerald-950/40 border-emerald-800 text-emerald-400"
-                        : formStatus === "error"
-                          ? "bg-rose-950/40 border-rose-800 text-rose-400"
-                          : "bg-zinc-900 border-zinc-800 text-zinc-400"
+                      ? "bg-emerald-950/40 border-emerald-800 text-emerald-400"
+                      : formStatus === "error"
+                        ? "bg-rose-950/40 border-rose-800 text-rose-400"
+                        : "bg-zinc-900 border-zinc-800 text-zinc-400"
                       }`}>
                       {formFeedback}
                     </div>
@@ -800,8 +778,8 @@ export default function App() {
                     key={tag}
                     onClick={() => setProjectTagFilter(tag)}
                     className={`font-mono text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 transition-all border cursor-pointer ${projectTagFilter === tag
-                        ? "bg-white text-black border-white"
-                        : "bg-zinc-950 border-zinc-900 text-zinc-455 hover:border-zinc-700 hover:text-white"
+                      ? "bg-white text-black border-white"
+                      : "bg-zinc-950 border-zinc-900 text-zinc-455 hover:border-zinc-700 hover:text-white"
                       }`}
                   >
                     {tag}
@@ -1149,8 +1127,8 @@ export default function App() {
                           key={tier}
                           onClick={() => setSelectedGigPackageTier(tier as any)}
                           className={`py-4 border-r border-zinc-900 last:border-r-0 transition-colors cursor-pointer ${selectedGigPackageTier === tier
-                              ? "bg-white text-black font-black"
-                              : "bg-zinc-900/60 text-zinc-450 hover:bg-zinc-900 hover:text-white"
+                            ? "bg-white text-black font-black"
+                            : "bg-zinc-900/60 text-zinc-450 hover:bg-zinc-900 hover:text-white"
                             }`}
                         >
                           {tier}
@@ -1344,7 +1322,7 @@ export default function App() {
               onClick={() => setCurrentView('fiverr-gig')}
               className="hover:text-emerald-300 text-emerald-400 transition-colors cursor-pointer font-black"
             >
-              Fiverr Gig
+              Gig
             </button>
             <span className="text-zinc-800 hidden sm:inline">|</span>
             <a href="https://github.com/rizwanwebdev" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">

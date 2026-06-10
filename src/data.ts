@@ -97,36 +97,36 @@ export interface CaseStudyData {
 export const caseStudies: Record<string, CaseStudyData> = {
   "project-1": {
     id: "project-1",
-    subtitle: "Zero-Latency Real-Time State Syncer powering thousand-node clusters",
-    challenge: "Traditional state synchronization relies on expensive REST polling or unbuffered socket streams. When scaled to thousands of active client nodes, database writes spike, leading to deadlocks, memory ingestion, and single-threaded event loop blocking in mainstream Node.js microservices.",
-    solution: "We designed a multi-layer pub-sub channel mesh. Real-time streams are buffered instantly in a redundant Redis cache layer. Instead of writing every frame to Postgres, a queue consumer aggregates, structuralizes, and batch-inserts states in transactional frames down to 100ms intervals, safely insulating the persistent database node.",
+    subtitle: "High-Performance Recipe Explorer with REST API integration",
+    challenge: "Home chefs need a fast, reliable way to search for recipes without dealing with cluttered interfaces or slow load times that disrupt their cooking flow.",
+    solution: "We engineered a clean React front-end that interfaces with a streamlined REST API. The application utilizes intelligent state management and responsive design to ensure recipes load instantly, even on mobile devices in the kitchen.",
     performanceMetrics: [
-      { label: "Transit Latency", value: "< 0.8ms", desc: "Average message propagation delay across active nodes" },
-      { label: "Throughput Capacity", value: "100k msg/s", desc: "Peak load handling with zero database connection timeouts" },
-      { label: "Zero-Data Losses", value: "0.000%", desc: "Durable write guarantees via synchronized Redis memory caches" }
+      { label: "Load Time", value: "< 0.5s", desc: "Average time to interactive for recipe detail pages" },
+      { label: "API Latency", value: "120ms", desc: "Average response time from the remote recipe endpoint" },
+      { label: "Mobile Usage", value: "85%", desc: "Perfectly optimized for mobile kitchen usage scenarios" }
     ],
     architectureNodes: [
-      { label: "Client Node JS/React", description: "Fires optimized binary frames via lightweight standard uWS WebSocket wrappers" },
-      { label: "Redis State Ingestion", description: "Aggregates, filters, and marshalls real-time transient channel payloads in memory" },
-      { label: "Batch Queue Broker", description: "Runs standard cron loops to structure and commit transactions in 100ms increments" },
-      { label: "PostgreSQL Database", description: "Persists structural telemetry schemas cleanly with cluster optimized index lookups" }
+      { label: "React Frontend", description: "Provides a responsive, accessible UI for browsing and saving recipes" },
+      { label: "REST API Gateway", description: "Serves recipe data efficiently with payload optimization and filtering" },
+      { label: "State Management", description: "Handles complex UI state for category filtering and search queries" },
+      { label: "Asset Delivery", description: "Serves high-resolution food imagery via global CDN with lazy loading" }
     ]
   },
   "project-2": {
     id: "project-2",
-    subtitle: "Standalone cryptographically insulated modular authentication microservice",
-    challenge: "Securing distributed services typically results in high token verification delays, fragmented auth checks, and code vulnerability from hand-rolled session verification. We needed an independent, modular gateway verifying sub-millisecond sessions safely.",
-    solution: "We engineered a highly optimized TypeScript microservice utilizing isolated RSA-256 validation pairs. The service completely decouples key-validation mechanics from user DB checks by persisting real-time revoked tokens in a Redis Bloom Filter, creating instant sub-microsecond revocation validation.",
+    subtitle: "Real-time Movie Discovery Platform leveraging TMDB API",
+    challenge: "Building a cinematic browsing experience requires handling massive amounts of high-resolution images, deeply nested API data, and complex search queries without degrading client-side performance.",
+    solution: "We built a robust TypeScript-driven architecture using React to render dynamic movie catalog pages while fetching and normalizing user data on the client side, significantly boosting initial load speeds and search responsiveness.",
     performanceMetrics: [
-      { label: "Verification Latency", value: "< 0.12ms", desc: "Average delay introduced per API check" },
-      { label: "Isolated Security Scoring", value: "100%", desc: "Comprehensive score in localized session leakage audits" },
-      { label: "Max Parallel Resolutions", value: "25k / sec", desc: "Tested maximum stress-load token emissions under extreme fire" }
+      { label: "LCP", value: "1.2s", desc: "Largest Contentful Paint optimized for image-heavy poster grids" },
+      { label: "TypeScript", value: "100%", desc: "Full type safety across complex third-party API responses" },
+      { label: "API Calls", value: "-40%", desc: "Reduction in external API requests through strategic local caching" }
     ],
     architectureNodes: [
-      { label: "External Requests Gate", description: "Leverages blazing quick CORS controls and sanitized JSON header checks" },
-      { label: "Isolated RSA Check", description: "Performs instant cryptographic verification without launching database lookups" },
-      { label: "Bloom Revocation Filter", description: "Checks lightweight Redis hashes in-memory to confirm session is still authorized" },
-      { label: "Session Lifecycle Cache", description: "Handles double-rotating refresh token lifespans safely with custom DB backups" }
+      { label: "TypeScript Logic", description: "Ensures type safety across complex TMDB API movie and cast responses" },
+      { label: "TMDB Integration", description: "Seamlessly fetches, debounces, and normalizes movie metadata and imagery" },
+      { label: "Dynamic Routing", description: "Handles thousands of movie detail pages and genre filters efficiently" },
+      { label: "Image Optimization", description: "Automatically scales and compresses movie posters on the fly via TMDB" }
     ]
   }
 };
